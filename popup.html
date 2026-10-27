@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Bangers&family=RocknRoll+One&family=Zen+Maru+Gothic:wght@500;700;900&display=swap');
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --paper: #fdfcf7;
+      --ink: #161616;
+      --red: #f59e0b;
+      --yellow: #ffd83d;
+      --yellow-bright: #facc15;
+    }
+
+    body {
+      width: 340px;
+      font-family: 'Zen Maru Gothic', 'Hiragino Maru Gothic ProN', 'Comic Neue', sans-serif;
+      background-color: var(--paper);
+      background-image: radial-gradient(rgba(22,22,22,0.07) 1.1px, transparent 1.2px);
+      background-size: 13px 13px;
+      color: var(--ink);
+    }
+
+    .header {
+      background: #ffffff;
+      border-bottom: 3px solid var(--ink);
+      padding: 14px 16px 12px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* speed-line strip along the header bottom */
+    .header::after {
+      content: '';
+      position: absolute;
+      left: 0; right: 0; bottom: 0;
+      height: 6px;
+      background: repeating-linear-gradient(
+        90deg,
+        var(--ink) 0px, var(--ink) 10px,
+        transparent 10px, transparent 16px
+      );
+      opacity: 0.9;
+    }
+
+    .header h1 img { height: 56px; vertical-align: middle; }
+
+    .header p {
+      font-family: 'Bangers', 'RocknRoll One', cursive;
+      font-size: 15px;
+      letter-spacing: 0.12em;
+      margin-top: 2px;
+    }
+
+    .header p .jp {
+      font-family: 'RocknRoll One', 'Zen Maru Gothic', sans-serif;
+      color: var(--red);
+      letter-spacing: 0.05em;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      padding: 14px 14px;
+      background: transparent;
+    }
+
+    .stat {
+      text-align: center;
+      padding: 10px 6px 8px;
+      background: #ffffff;
+      border: 3px solid var(--ink);
+      border-radius: 6px;
+      box-shadow: 4px 4px 0 var(--ink);
+    }
+
+    .stat:nth-child(1) { transform: rotate(-1.2deg); }
+    .stat:nth-child(2) { transform: rotate(0.8deg) translateY(2px); }
+    .stat:nth-child(3) { transform: rotate(-0.6deg); }
+
+    .stat-value {
+      font-family: 'Bangers', cursive;
+      font-size: 30px;
+      line-height: 1;
+      color: var(--ink);
+    }
+
+    .stat:nth-child(1) .stat-value { color: var(--red); }
+
+    .stat-label {
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin-top: 4px;
+      border-top: 2px solid var(--ink);
+      padding-top: 4px;
+    }
+
+    .actions {
+      padding: 4px 14px 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      border: 3px solid var(--ink);
+      border-radius: 8px;
+      font-family: 'Bangers', 'RocknRoll One', cursive;
+      font-size: 18px;
+      letter-spacing: 0.08em;
+      cursor: pointer;
+      transition: transform 0.1s ease, box-shadow 0.1s ease;
+      box-shadow: 5px 5px 0 var(--ink);
+      position: relative;
+    }
+
+    button .btn-jp {
+      font-family: 'RocknRoll One', 'Zen Maru Gothic', sans-serif;
+      font-size: 13px;
+      letter-spacing: 0.15em;
+      margin-left: 6px;
+      opacity: 0.85;
+    }
+
+    button:hover {
+      transform: translate(-2px, -2px);
+      box-shadow: 7px 7px 0 var(--ink);
+    }
+
+    button:active {
+      transform: translate(3px, 3px);
+      box-shadow: 2px 2px 0 var(--ink);
+    }
+
+    .btn-primary {
+      background: #ffffff;
+      color: var(--ink);
+    }
+
+    .btn-secondary {
+      background: var(--yellow);
+      color: var(--ink);
+    }
+
+    .btn-success {
+      background: var(--red);
+      color: #ffffff;
+      text-shadow: 2px 2px 0 var(--ink);
+    }
+
+    .info {
+      padding: 0 16px 14px;
+      font-size: 12px;
+      font-weight: 700;
+      text-align: center;
+    }
+
+    .info .sfx {
+      font-family: 'RocknRoll One', sans-serif;
+      color: var(--red);
+    }
+
+    /* ============ ACCESSIBILITY ============ */
+
+    button:focus-visible,
+    a:focus-visible {
+      outline: 3px solid var(--red);
+      outline-offset: 3px;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+  </style>
+<base target="_blank">
+</head>
+<body>
+  <div class="header">
+    <h1><img src="swiftlang.png" alt="SwiftLang" style="height: 52px; object-fit: contain;"></h1>
+    <p>SWIFTLANG JAPANESE <span class="jp">日本語パートナー</span></p>
+  </div>
+
+  <div class="stats" id="stats">
+    <div class="stat">
+      <div class="stat-value" id="dueCount">-</div>
+      <div class="stat-label">Due</div>
+    </div>
+    <div class="stat">
+      <div class="stat-value" id="newCount">-</div>
+      <div class="stat-label">New</div>
+    </div>
+    <div class="stat">
+      <div class="stat-value" id="totalCount">-</div>
+      <div class="stat-label">Total</div>
+    </div>
+  </div>
+
+  <div class="actions">
+    <button class="btn-secondary" id="studyBtn" style="background: var(--yellow-bright); font-weight: 900;">STUDY NOW!<span class="btn-jp">勉強開始</span></button>
+    <button class="btn-primary" id="browseBtn">BROWSE CARDS<span class="btn-jp">カード一覧</span></button>
+    <button class="btn-primary" id="exportBtn">EXPORT TO ANKI<span class="btn-jp">出力</span></button>
+  </div>
+
+  <div class="info">
+    Click any Japanese word on a page to save it <span class="sfx">ポチッ！</span>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
