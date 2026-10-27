@@ -1,0 +1,60 @@
+{
+  "manifest_version": 3,
+  "name": "SwiftLang",
+  "version": "1.0",
+  "description": "SwiftLang",
+  "permissions": [
+    "storage",
+    "unlimitedStorage",
+    "downloads"
+  ],
+  "host_permissions": [
+    "https://jisho.org/*",
+    "https://api.mymemory.translated.net/*",
+    "https://generativelanguage.googleapis.com/*",
+    "https://kanjiapi.dev/*",
+    "https://api.tatoeba.org/*",
+    "https://raw.githubusercontent.com/*",
+    "https://assets.languagepod101.com/*",
+    "https://nekos.best/*",
+    "https://api.waifu.pics/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "SwiftLang"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "tiny_segmenter.js",
+        "fsrs.js",
+        "core.js",
+        "audio.js",
+        "content.js"
+      ],
+      "run_at": "document_idle"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "srs.html",
+        "srs.js",
+        "fsrs.js",
+        "core.js",
+        "audio.js",
+        "chatbot.html",
+        "chatbot.js"
+      ],
+      "matches": [
+        "<all_urls>"
+      ]
+    }
+  ]
+}
